@@ -26,7 +26,7 @@ scipy == 1.2.1
 
 # Evaluation
 ## cross-view reasoning
-Before use, please replace the path of your own dataset and the path of the pre-trained model weights with your own local paths. This experiment entirely uses the pre-trained model weights net_751.pth and opts.yaml. If you need to test cross-view reasoning with your own trained model weights, please refer to this or wait for our future work, as we will open-source more cross-visual training model codes on GitHub. Thank you for your attention.
+Before use, please replace the path of your own dataset and the path of the pre-trained model weights with your own local paths. Model weights file is too huge to updata to github and it need you to download with my [google drive](https://drive.google.com/drive/folders/1cbC_aw71noqhKzk86_kl2NGvMHTzcRZ7?usp=sharing).In there, we provide two weights file pytorch_result.mat and net_751,pth. This experiment entirely uses the pre-trained model weights net_751.pth and opts.yaml. If you need to test cross-view reasoning with your own trained model weights, please refer to [this](https://github.com/AggMan96/RK-Net) or wait for our future work, as we will open-source more cross-visual training model work and results on GitHub. Thank you for your attention.
 
 ## whitebox attack and blackbox attack
 We use attacks to measure the situation of privacy breaches, demonstrating the privacy breach situation at multiple points in the model, and using SSIM to measure the degree of privacy leakage. Below is the display of attack effects.
