@@ -34,6 +34,7 @@ We use attacks to measure the situation of privacy breaches, demonstrating the p
 
 ## RL
 We have adopted various reinforcement learning strategies to achieve joint optimization of the goals, including actor-critic, PPO, DQN, Q-learning, and Multi-Q-learning. Please try in the magazine_RL folder. Result is displayed in here.
+![RL_output](img/output_img2.png)
 
 # welcome to cite our work
 
