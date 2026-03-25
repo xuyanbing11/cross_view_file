@@ -6,7 +6,7 @@ from torch.distributions import Normal, Categorical
 import torch.optim as optim
 import random
 from collections import deque
-
+import pandas as pd
 # 检查GPU可用性
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
@@ -31,6 +31,7 @@ d_fai = 5*10**-29
 trans_v_up = 100*1024*1024/4 #553081138.4484484
 trans_v_dn = 20*1024*1024/4
 p_cm = 0.1
+
 # nums_data = np.array([5, 3, 4, 7, 9])  # 客户端本地数据量
 partition_point = [0, 1, 2, 3, 4, 5, 6]
 
@@ -40,7 +41,7 @@ num_img_car = 1
 device_load = [0.3468e9, 0.3519e9, 2.3408e9, 2.3409e9, 5.3791e9, 9.6951e9, 12.077e9]
 server_load = [11.7321e9, 11.727e9, 9.7381e9, 9.738e9, 6.6998e9, 2.3838e9, 0.0019e9]
 exchanged_data = [2359296, 2359296, 2359296, 2359296, 1179628, 589824, 294912]
-privacy_leak = [0.96122, 0.608901, 0.57954889, 0.593044, 0.535525, 0.007155, 0.054303]
+privacy_leak = [0.984544396, 0.636310011, 0.455214925, 0.457709778, 0.396090664, 0.190594484, 0.174027759]
 
 # 转换为NumPy数组
 np_partition = np.array(partition_point)
@@ -91,10 +92,10 @@ def train():
     # alpha_optimizer = optim.Adam([server_net.log_alpha], lr=0.001)
     num_img_UAV = 3
     num_img_car = 1
-    optimizer_UAV = torch.optim.Adam(UAV_agent.parameters(), lr=0.001)
-    optimizer_car = torch.optim.Adam(car_agent.parameters(), lr=0.001)
+    optimizer_UAV = torch.optim.Adam(UAV_agent.parameters(), lr=0.0001)
+    optimizer_car = torch.optim.Adam(car_agent.parameters(), lr=0.0001)
     multi_NET2_history = []
-    num_episodes = 5001
+    num_episodes = 60001*5
     # server_buffer = ReplayBuffer()
 
     for episode in range(num_episodes):
@@ -148,11 +149,11 @@ def train():
         optimizer_car.step()
 
 
-        if episode % 10 == 0:
-            print(f"episode {episode} UAV action is{action_UAV},car action is {action_car},car reward is {reward_car}")
+        if episode % 50 == 0:
+            # print(f"episode {episode} UAV action is{action_UAV},car action is {action_car},car reward is {reward_car}")
             history_0.append(reward_UAV)
             history_1.append(reward_car)
-            
+            print(f"episode {episode} reward_car is {reward_car},reward_UAV is {reward_UAV}")
             # print(f"Episode {episode}: Total Time = {time_car+time_UAV},Total_Energy = {energy_car + energy_UAV} Reward = {reward}")
             # print(f"Episode {episode}: Total Time = {total_time}, Reward = {reward}")
             # multi_NET2_history.append(abs(reward))
@@ -163,3 +164,16 @@ if __name__ == "__main__":
     history_0 = []
     history_1 = []
     train()
+    
+    df = pd.DataFrame(history_0, columns=['Reward'])
+    uav_file_path = 'DQN_UAV_ssim.xlsx'
+    df.to_excel(uav_file_path, index=False)
+    
+    print(f"数据已成功保存到 {uav_file_path}")
+
+    df_1 = pd.DataFrame(history_1, columns=['Reward'])
+    car_file_path = 'DQN_car_ssim.xlsx'
+    df.to_excel(car_file_path, index=False)
+    
+    print(f"数据已成功保存到 {car_file_path}")
+    print(history_1)
