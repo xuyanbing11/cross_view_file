@@ -39,7 +39,7 @@ If you wish to test cross-view reasoning with your own trained weights, please r
 
 ### Experiment I: Performance Evaluation
 The feasibility and localization performance of UAVs or vehicles using CVL based on 6G Space-Air-Ground Integrated Networks (SAGIN) are evaluated through simulation experiments. The experiment is configured with varying numbers and viewpoints of images to assess matching accuracy. Result is shown below:
-![main result](img/output_img1.png)
+![main result](img/output_img3.png)
 
 ---
 
