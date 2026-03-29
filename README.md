@@ -5,8 +5,11 @@ This repository provides the code for " Efficient Cross-View Localization in 6G 
 
 Recently, visual localization has become an important supplement to improve localization reliability, and cross-view approaches can greatly enhance coverage and adaptability. Mean time, future 6G will enable a globally covered mobile communication system, with space-air-ground integrated networks (SAGIN) serving as key supporting architecture. Inspired by this, we explores the integration of cross-view localization (CVL) with 6G SAGIN, focusing on embedding CVL into the 6G SAGIN architecture and enhancing its performance in terms of latency, energy consumption, and privacy protection. 
 
+As illustrated in the figure, we provide an overview of multi-source data fusion and technical classifications for Cross-View Localization (CVL), while visually presenting its application scenarios across six major domains, including unmanned systems, intelligent transportation, and emergency rescue.
 ![main workflow](img/team_img.png)
 
+Furthermore, to address the high computational and energy demands of CVL models on edge devices, we propose a split inference architecture for cross-view localization (as shown in the figure) and highlight a technical scheme that utilizes reinforcement learning (RL) to achieve Quality of Service (QoS) optimization by balancing computation, communication, and confidentiality costs.
+![main workflow](img/team_img2.png)
 
 # Dataset
 The dataset we used is [university-1652](https://github.com/layumi/University1652-Baseline), please replace it with your own dataset path when using.
