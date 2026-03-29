@@ -12,7 +12,8 @@ Furthermore, to address the high computational and energy demands of CVL models 
 ![main workflow](img/team_img2.png)
 
 # Dataset
-The dataset we used is [university-1652](https://github.com/layumi/University1652-Baseline), please replace it with your own dataset path when using.
+The dataset we used is [university-1652](https://github.com/layumi/University1652-Baseline), please replace it with your own dataset path when using. We adopt ResNet-50 as the backbone feature extraction model, with two unified spatial attention modules (USAM) incorporated to enhance feature matching performance. The internal structureof the feature extractionmodel as follows.
+![main workflow](img/team_img3.png)
 
 # Requirement
 The following are just some key points, and the rest can be found in detail in requirement.txt.
@@ -28,15 +29,32 @@ Pytorch 0.3+
 scipy == 1.2.1
 
 # Evaluation
-## cross-view reasoning
-Before use, please replace the path of your own dataset and the path of the pre-trained model weights with your own local paths. Model weights file is too huge to updata to github and it need you to download with my [google drive](https://drive.google.com/drive/folders/1cbC_aw71noqhKzk86_kl2NGvMHTzcRZ7?usp=sharing).In there, we provide two weights file pytorch_result.mat and net_751,pth. This experiment entirely uses the pre-trained model weights net_751.pth and opts.yaml. If you need to test cross-view reasoning with your own trained model weights, please refer to [this](https://github.com/AggMan96/RK-Net) or wait for our future work, as we will open-source more cross-visual training model work and results on GitHub. Thank you for your attention.
 
-## whitebox attack and blackbox attack
-We use attacks to measure the situation of privacy breaches, demonstrating the privacy breach situation at multiple points in the model, and using SSIM to measure the degree of privacy leakage. Below is the display of attack effects.
+## 1. Cross-View Reasoning
+Before running the evaluation, please replace the dataset paths and pre-trained model weight paths with your own local paths. 
+
+Due to the large file size, the model weights cannot be uploaded to GitHub. You can download them from my [Google Drive](https://drive.google.com/drive/folders/1cbC_aw71noqhKzk86_kl2NGvMHTzcRZ7?usp=sharing), where we provide two weight files: `pytorch_result.mat` and `net_751.pth`. This experiment specifically utilizes the pre-trained weights `net_751.pth` and `opts.yaml`. 
+
+If you wish to test cross-view reasoning with your own trained weights, please refer to the [RK-Net repository](https://github.com/AggMan96/RK-Net) or stay tuned for our future updates, as we plan to open-source more cross-view training models and results on GitHub. Thank you for your interest.
+
+### Experiment I: Performance Evaluation
+The feasibility and localization performance of UAVs or vehicles using CVL based on 6G Space-Air-Ground Integrated Networks (SAGIN) are evaluated through simulation experiments. The experiment is configured with varying numbers and viewpoints of images to assess matching accuracy. Result is shown below:
+![main result](img/output_img1.png)
+
+---
+
+### Experiment II: Privacy Breach Assessment
+We utilize both whitebox and blackbox attacks to evaluate potential privacy leaks, demonstrating the degree of privacy breach at multiple nodes within the model. The Structural Similarity Index Measure (SSIM) is employed to quantify the level of privacy leakage. The visualization of the attack effects is shown below:
+
 ![attack_output](img/output_img1.png)
 
-## RL
-We have adopted various reinforcement learning strategies to achieve joint optimization of the goals, including actor-critic, PPO, DQN, Q-learning, and Multi-Q-learning. Please try in the magazine_RL folder. Result is displayed in here.
+---
+
+## 3. Reinforcement Learning (RL)
+A joint optimization problem for communication, computation, and confidentiality within the QoS metrics of CVL is formulated. This optimization problem is solved using a range of RL algorithms, including **Actor-Critic, PPO, DQN, Q-learning, and Multi-Q-learning**, to compare their convergence performance.
+
+Please explore the implementation in the `magazine_RL` folder. The experimental results are displayed below:
+
 ![RL_output](img/output_img2.png)
 
 # welcome to cite our work
